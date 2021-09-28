@@ -3,12 +3,12 @@ from tensorflow.keras.preprocessing.image import ImageDataGenerator
 def Augmented_train_data(rotation_range= 0.2,shear_range= 0.2,zoom_range= 0.2,width_shift_range=0.2,height_shift_range= 0.3,horizontal_flip=True):
 
   train_datagen_augmented = ImageDataGenerator(rescale=1 / 255,
-                                             rotation_range, # How much you want to rotate an image ? 
-                                             shear_range, # how much do you want to shear in image ? 
-                                             zoom_range,# Zoom in image 
-                                             width_shift_range, # Move your image around on the x-axis ?
-                                             height_shift_range, # Move your image around on the y-axis ?
-                                             horizontal_flip # Do you want to flip the image 
+                                               rotation_range, # How much you want to rotate an image ? 
+                                               shear_range, # how much do you want to shear in image ? 
+                                               zoom_range,# Zoom in image 
+                                               width_shift_range, # Move your image around on the x-axis ?
+                                               height_shift_range, # Move your image around on the y-axis ?
+                                               horizontal_flip # Do you want to flip the image 
                                              )
   return train_datagen_augmented
 
