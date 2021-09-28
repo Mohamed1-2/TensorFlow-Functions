@@ -128,3 +128,43 @@ def walk_through_data_in_directory(filename):
   # walk through 10 per data directory and list number of files 
   for dirpath,dirnames,filenames  in os.walk(filename):
     print(f"There are {len(dirnames)} directories and {len(filenames)} images in '{dirpath}'.")
+    
+ #######################################################
+    
+ # Fuction to compare 2  traning Modle's History 
+def compare_Modles_History(Original_His,New_His,initial_epochs=5):
+  """
+  Compare two TensorFlow History Modles
+  """
+
+ # Original History Measurments 
+  acc= Original_His.history["accuracy"]
+
+  loss=Original_His.history["loss"]
+
+  # new History Measurments 
+  val_acc= Original_His.history["val_accuracy"]
+  val_loss=Original_His.history["val_loss"] 
+
+  # combine original History 
+  total_acc= acc+ New_His.history["accuracy"]
+  total_loss= loss+New_His.history["loss"]
+
+  total_val_acc= val_acc+ New_His.history["val_accuracy"]
+  total_val_loss= val_loss+New_His.history["val_loss"]
+  # Make Plot 
+  plt.figure(figsize=(12,12))
+  plt.subplot(2,1,1)
+  plt.plot(total_acc,label="traning Accuracy")
+  plt.plot(total_val_acc,label="VAl Accuracy")
+
+  plt.plot([initial_epochs-1,initial_epochs-1],plt.ylim(),label="start Fine Tuning")
+  plt.legend(loc="lower right ")
+  plt.title("Trainig and validation")
+
+  plt.subplot(2,1,2)
+  plt.plot(total_loss,label="traning loss")
+  plt.plot(total_val_loss,label="VAl loss")
+  plt.plot([initial_epochs-1,initial_epochs-1],plt.ylim(),label="start Fine Tuning")
+  plt.legend(loc="upper right ")
+  plt.title("Trainig and validation Loss")
