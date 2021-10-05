@@ -168,3 +168,12 @@ def compare_Modles_History(Original_His,New_His,initial_epochs=5):
   plt.plot([initial_epochs-1,initial_epochs-1],plt.ylim(),label="start Fine Tuning")
   plt.legend(loc="upper right ")
   plt.title("Trainig and validation Loss")
+  
+  
+  #############################################
+import datetime
+def create_tensorboard_callback(dir_name, expermint_name):
+  log_dir= dir_name+"/"+expermint_name+"/"+ datetime.datetime.now().strftime("Y%m%d%-%H%M%S%")
+  tensorboard_callback = tf.keras.callbacks.TensorBoard(log_dir= log_dir)
+  print(f"Saving TensorBoard Log files to : {log_dir}")
+  return tensorboard_callback
